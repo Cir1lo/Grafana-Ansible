@@ -1,0 +1,8 @@
+- name: (1) Instalando pacotes necessários
+  apt:
+    name:
+      - software-properties-common
+      - wget
+      - apt-transport-https
+      - unzip
+    state: present

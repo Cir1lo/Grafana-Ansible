@@ -1,0 +1,6 @@
+---
+# tasks file for Grafana
+- name: Grafana installation and configuration
+  become: yes
+  # import_tasks: installation.yml
+  import_tasks: grafana_configuration.yml
