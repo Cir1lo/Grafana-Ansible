@@ -14,3 +14,5 @@
 
 - name: (2) Adicionar um repositório estável
   shell: echo "deb [signed-by=/usr/share/keyrings/grafana.key] https://apt.grafana.com stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
+
+- name: (2.1) Adicionar um repositório 
