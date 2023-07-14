@@ -32,6 +32,10 @@
     name: grafana-enterprise
     state: present
 
+- name: (5) Criando senha criptografada para acesso ao grafana
+  shell: grafana-cli admin reset-admin-password tTtdT#p2JGBNUJF2LPg%zZsCcS
+
+
 - name: (4) Ativar o serviço grafana
   shell: systemctl enable grafana-server
 
