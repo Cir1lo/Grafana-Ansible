@@ -6,3 +6,7 @@
       - apt-transport-https
       - unzip
     state: present
+
+- name: (2) Atualizar o cache dos pacotes 
+  apt:
+    update_cache: yes
