@@ -12,22 +12,21 @@
     owner: root
     group: root
 
-- name: (2) Adicionar um repositório estável
-  shell: echo "deb [signed-by=/usr/share/keyrings/grafana.key] https://apt.grafana.com stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
+- name: (2) Adicionar um repositório estávels
+  apt_repository:
+    repo: "deb [signed-by=/usr/share/keyrings/grafana.key] https://apt.grafana.com stable main"
+    state: present
 
-- name: (2.1) Adicionar um repositório beta
-  shell: echo "deb [signed-by=/usr/share/keyrings/grafana.key] https://apt.grafana.com beta main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
-
-- name: (2.2) Atualizar o cache dos pacotes 
+- name: (3) Atualizar o cache dos pacotes 
   apt:
     update_cache: yes
 
-- name: (3) Instalação do grafana
+- name: (4) Instalação do grafana
   apt:
     name: grafana
     state: present
 
-- name: (4) Instalação do grafana-enterprise
+- name: (4.1) Instalação do grafana-enterprise
   apt:
     name: grafana-enterprise
     state: present
@@ -35,9 +34,8 @@
 - name: (5) Criando senha criptografada para acesso ao grafana
   shell: grafana-cli admin reset-admin-password tTtdT#p2JGBNUJF2LPg%zZsCcS
 
-
-- name: (4) Ativar o serviço grafana
-  shell: systemctl enable grafana-server
-
-- name: (4.1) Iniciar o serviço do grafana
-  shell: systemctl start grafana-server
+- name: (6) Iniciar o serviço do grafana
+  systemd:
+    name: grafana-server
+    state: started
+    enabled: yes
