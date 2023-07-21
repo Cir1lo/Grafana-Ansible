@@ -34,6 +34,10 @@
 - name: (5) Criando senha criptografada para acesso ao grafana
   shell: grafana-cli admin reset-admin-password tTtdT#p2JGBNUJF2LPg%zZsCcS
 
+- name: (5.1) Atualizar os pacotes
+  apt:
+    update_cache: yes
+
 - name: (6) Iniciar o serviço do grafana
   systemd:
     name: grafana-server
